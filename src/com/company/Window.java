@@ -1,5 +1,8 @@
 package com.company;
 
+import java.awt.*;
+import java.util.Random;
+
 public class Window implements Comparable<Window> {
     //Window class
     //Stores info for fake window
@@ -16,14 +19,28 @@ public class Window implements Comparable<Window> {
     public Window(int x, int y, int xcor, int ycor, int z){
         xWidth = x;
         yHeight = y;
-        int xCor = xcor;
-        int yCor = xcor;
+        xCor = xcor;
+        yCor = ycor;
         zOrder = z;
     }
 
     @Override
     public int compareTo(Window o) {
-        return 0;
+        if (zOrder > o.getzOrder()){
+            return 1;
+        } else if (zOrder < o.getzOrder()){
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    public void drawWindow (Graphics g){
+        Random ran = new Random();
+        Color temp = new Color (ran.nextInt(255), ran.nextInt(255), ran.nextInt(255));
+        g.setColor(temp);
+        g.drawRect(xCor, yCor, xWidth, yHeight);
+        g.fillRect(xCor, yCor, xWidth, yHeight);
     }
 
     public int getxWidth() {

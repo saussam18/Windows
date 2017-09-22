@@ -18,6 +18,7 @@ public class BackGround extends JPanel implements MouseListener {
     //add fake windows
 
     private JPanel panel1;
+    private WindowManager w = new WindowManager();
     private int xSize;
     private int ySize;
 
@@ -25,9 +26,8 @@ public class BackGround extends JPanel implements MouseListener {
         panel1.addMouseListener(this);
         addMouseListener(this);
         setPreferredSize(new Dimension(x, y));
-        WindowManager w = new WindowManager();
         for (int i = 0; i < 10; i++){
-            w.addWindow(x, y);
+            w.addWindow(x, y, i);
         }
     }
 
@@ -35,10 +35,7 @@ public class BackGround extends JPanel implements MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setColor(Color.RED);
-        g2d.drawOval(50, 50, 50, 50);
-
+        w.drawWindows(g);
     }
 
     public void mouseClicked(MouseEvent e) {

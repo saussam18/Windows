@@ -10,11 +10,11 @@ public class Main {
         //create jframe
         //set size
         JFrame f = new JFrame("BackGround");
-        int xSize = 500;
-        int ySize = 500;
+        int xSize = 1950;
+        int ySize = 1100;
         BackGround b = new BackGround(xSize, ySize);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(500, 500);
+        f.setSize(xSize, ySize);
         f.add(b);
         //create jpanel (Should be sub class)
         //add panel to frame
