@@ -15,13 +15,20 @@ public class Window implements Comparable<Window> {
     private int xCor;
     private int yCor;
     private int zOrder;
+    private int color1;
+    private int color2;
+    private int color3;
 
     public Window(int x, int y, int xcor, int ycor, int z){
+        Random ran = new Random();
         xWidth = x;
         yHeight = y;
         xCor = xcor;
         yCor = ycor;
         zOrder = z;
+        color1 = ran.nextInt(255);
+        color2 = ran.nextInt(255);
+        color3 = ran.nextInt(255);
     }
 
     @Override
@@ -36,9 +43,8 @@ public class Window implements Comparable<Window> {
     }
 
     public void drawWindow (Graphics g){
-        Random ran = new Random();
-        Color temp = new Color (ran.nextInt(255), ran.nextInt(255), ran.nextInt(255));
-        g.setColor(temp);
+        Color c = new Color (color1, color2, color3);
+        g.setColor(c);
         g.drawRect(xCor, yCor, xWidth, yHeight);
         g.fillRect(xCor, yCor, xWidth, yHeight);
     }

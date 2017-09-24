@@ -36,18 +36,33 @@ public class WindowManager {
     }
 
     public void drawWindows(Graphics g){
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < winds.size(); i++){
             winds.get(i).drawWindow(g);
         }
     }
 
-    public void bringToFront(){
-
-
-
+    public void bringToFront(int i){
+        Window temp;
+        temp = winds.get(i);
+        winds.remove(winds.get(i));
+        winds.add(temp);
     }
-    public void findWindowByPositon(){
-
+    public void findWindowByPositon(int x, int y){
+        for (int i = 0; i < winds.size() ; i++){
+            int xCor = winds.get(i).getxCor();
+            int yCor = winds.get(i).getyCor();
+            int xCheck = findX(winds.get(i));
+            int yCheck = findY(winds.get(i));
+            if(x <= xCheck && x >= xCor && y <= yCheck && y >= yCor){
+               bringToFront(i);
+            }
+        }
+    }
+    private int findX (Window w){
+        return w.getxCor() + w.getxWidth();
+    }
+    private int findY (Window w){
+        return w.getyCor() + w.getyHeight();
     }
 
 
