@@ -27,10 +27,10 @@ public class WindowManager {
     }
     public void addWindow(int x, int y, int z){
         Random ran = new Random();
-        int wX = ran.nextInt(x - 300) + 100;
-        int wY = ran.nextInt(y - 300) + 100;
-        int xCor = ran.nextInt(x - 50);
-        int yCor = ran.nextInt(y - 50);
+        int wX = ran.nextInt(x - 500) + 75;
+        int wY = ran.nextInt(y - 500) + 75;
+        int xCor = ran.nextInt(x - 25);
+        int yCor = ran.nextInt(y - 25);
         Window w = new Window(wX, wY, xCor, yCor, z);
         winds.add(z, w);
     }
@@ -69,11 +69,15 @@ public class WindowManager {
         }
         if (windsAtPos.size() > 1){
             for(int i = 0; i < windsAtPos.size() - 1; i++){
-                if (windsAtPos.get(i).compareTo(windsAtPos.get(i+1)) == 1){
+                    if (windsAtPos.get(i).compareTo(windsAtPos.get(i+1)) == 1){
                     bringToFront(windsAtPos.get(i));
-                }
+                    }else if (windsAtPos.get(i).compareTo(windsAtPos.get(i+1)) == 0){
+                        bringToFront(windsAtPos.get(0));
+                    }else {
+                        bringToFront(windsAtPos.get(windsAtPos.size()-1));
+                    }
             }
-        }else{
+        }else if (windsAtPos.size() == 1){
             bringToFront(windsAtPos.get(0));
         }
     }

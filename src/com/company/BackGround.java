@@ -46,7 +46,6 @@ public class BackGround extends JPanel implements MouseListener {
         w.findWindowByPositon(x, y);
         System.out.println(x+","+y);
         repaint();
-        revalidate();
     }
     public void mouseExited(MouseEvent e){
 
