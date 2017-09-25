@@ -2,13 +2,9 @@ package com.company;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
-
 import java.awt.*;
 import java.awt.event.*;
-
-
 public class BackGround extends JPanel implements MouseListener, MouseInputListener {
-
     //myJpanel extents jpanel
     //implements mouse interface
     //uses paintComponet()
@@ -17,10 +13,8 @@ public class BackGround extends JPanel implements MouseListener, MouseInputListe
     //set up mouse
     //create windowManager
     //add fake windows
-
-    private JPanel panel1;
     private WindowManager w = new WindowManager();
-    private int xDis;
+    private int xDis;//struggled with drag so got some help from Connor, realized i needed this
     private int yDis;
 
     public BackGround(int x, int y){
@@ -31,15 +25,11 @@ public class BackGround extends JPanel implements MouseListener, MouseInputListe
             w.addWindow(x, y, i);
         }
     }
-
-
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         w.drawWindows(g);
     }
-
     @Override
     public void mousePressed(MouseEvent e){
         int x = e.getX();
@@ -51,7 +41,6 @@ public class BackGround extends JPanel implements MouseListener, MouseInputListe
         w.bringToFront(wind);
         repaint();
     }
-
     @Override
     public void mouseDragged(MouseEvent e){
         int x = e.getX();
@@ -59,6 +48,8 @@ public class BackGround extends JPanel implements MouseListener, MouseInputListe
         w.moveWindowPos(x, y, xDis, yDis);
         repaint();
     }
+
+    //rest of these methods are not used
     public void mouseClicked(MouseEvent e) {
 
     }

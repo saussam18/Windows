@@ -10,7 +10,7 @@ public class Main {
         //create jframe
         //set size
         JFrame f = new JFrame("BackGround");
-        int xSize = 1950;
+        int xSize = 1950; //didnt know what size to do
         int ySize = 1100;
         BackGround b = new BackGround(xSize, ySize);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,9 +20,5 @@ public class Main {
         //add panel to frame
         //make jframe visble
         f.setVisible(true);
-
-
-
-
     }
 }

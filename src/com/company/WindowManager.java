@@ -22,12 +22,10 @@ public class WindowManager {
     private ArrayList<Window> winds = new ArrayList<Window>();
 
     public WindowManager(){
-
-
     }
     public void addWindow(int x, int y, int z){
         Random ran = new Random();
-        int wX = ran.nextInt(x - 500) + 75;
+        int wX = ran.nextInt(x - 500) + 75;//still not totally happy with the randoms but it works
         int wY = ran.nextInt(y - 500) + 75;
         int xCor = ran.nextInt(x);
         int yCor = ran.nextInt(y);
@@ -45,7 +43,6 @@ public class WindowManager {
             winds.get(i).setzOrder(i);
         }
     }
-
     public void bringToFront(Window w){
         for(int i = 0; i < winds.size(); i++){
             if(w.getzOrder() == winds.get(i).getzOrder()){
@@ -67,7 +64,7 @@ public class WindowManager {
                windsAtPos.add(winds.get(i));
             }
         }
-        if (windsAtPos.size() > 1){
+        if (windsAtPos.size() > 1){ //had trouble with this so got some help from others
             for(int i = 0; i < windsAtPos.size() - 1; i++){
                     if (windsAtPos.get(i).compareTo(windsAtPos.get(i+1)) == 1){
                      w = windsAtPos.get(i);
@@ -82,7 +79,6 @@ public class WindowManager {
         }
         return w;
     }
-
     public void moveWindowPos(int x, int y, int xDis, int yDis){
             int changeX = x - xDis;
             int changeY = y - yDis;

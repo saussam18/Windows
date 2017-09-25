@@ -12,11 +12,11 @@ public class Window implements Comparable<Window> {
     //getters and setters
     private int xWidth;
     private int yHeight;
-    public int xCor;
-    public int yCor;
+    private int xCor;
+    private int yCor;
     private int zOrder;
     private int color1;
-    private int color2;
+    private int color2;//Could of save it in one object but too lazy since i did this first
     private int color3;
 
     public Window(int x, int y, int xcor, int ycor, int z){
@@ -30,7 +30,6 @@ public class Window implements Comparable<Window> {
         color2 = ran.nextInt(255);
         color3 = ran.nextInt(255);
     }
-
     @Override
     public int compareTo(Window o) {
         if (zOrder > o.getzOrder()){
@@ -41,15 +40,13 @@ public class Window implements Comparable<Window> {
             return 0;
         }
     }
-
     public void drawWindow (Graphics g){
         Color c = new Color (color1, color2, color3);
         g.setColor(c);
         g.drawRect(xCor, yCor, xWidth, yHeight);
         g.fillRect(xCor, yCor, xWidth, yHeight);
     }
-
-    public int getxWidth() {
+    public int getxWidth() { //got rid of getters and setters not used
         return xWidth;
     }
 
@@ -59,31 +56,18 @@ public class Window implements Comparable<Window> {
     public int getxCor() {
         return xCor;
     }
-
     public int getyCor() {
         return yCor;
     }
-
     public int getzOrder() {
         return zOrder;
     }
-
-    public void setxWidth(int xWidth) {
-        this.xWidth = xWidth;
-    }
-
-    public void setyHeight(int yWidth) {
-        this.yHeight = yWidth;
-    }
-
     public void setxCor(int xCor) {
         this.xCor = xCor;
     }
-
     public void setyCor(int yCor) {
         this.yCor = yCor;
     }
-
     public void setzOrder(int zOrder) {
         this.zOrder = zOrder;
     }
