@@ -20,6 +20,8 @@ public class WindowManager {
 
 
     private ArrayList<Window> winds = new ArrayList<Window>();
+    private int xCheck;
+    private int yCheck;
 
     public WindowManager(){
     }
@@ -54,12 +56,12 @@ public class WindowManager {
     }
     public Window findWindowByPositon(int x, int y){
         ArrayList<Window> windsAtPos = new ArrayList<Window>();
-        Window w = new Window (0, 0, 0,0,0);
+        Window w = winds.get(winds.size()-1);
         for (int i = 0; i < winds.size() ; i++){
             int xCor = winds.get(i).getxCor();
             int yCor = winds.get(i).getyCor();
-            int xCheck = findX(winds.get(i));
-            int yCheck = findY(winds.get(i));
+            xCheck = findX(winds.get(i));
+            yCheck = findY(winds.get(i));
             if(x <= xCheck && x >= xCor && y <= yCheck && y >= yCor){
                windsAtPos.add(winds.get(i));
             }
@@ -82,8 +84,11 @@ public class WindowManager {
     public void moveWindowPos(int x, int y, int xDis, int yDis){
             int changeX = x - xDis;
             int changeY = y - yDis;
+       // if(x <= xCheck && x >= winds.get(winds.size() - 1).getxCor() && y <= yCheck && y >= winds.get(winds.size() - 1).getyCor()){ //Works but makes really laggy so i just commented it out, not enough time to fix
             winds.get(winds.size() - 1).setxCor(changeX);
             winds.get(winds.size() - 1).setyCor(changeY);
+      //  }
+
     }
     private int findX (Window w){
         return w.getxCor() + w.getxWidth();
