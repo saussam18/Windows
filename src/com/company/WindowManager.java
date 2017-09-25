@@ -29,8 +29,8 @@ public class WindowManager {
         Random ran = new Random();
         int wX = ran.nextInt(x - 500) + 75;
         int wY = ran.nextInt(y - 500) + 75;
-        int xCor = ran.nextInt(x - 25);
-        int yCor = ran.nextInt(y - 25);
+        int xCor = ran.nextInt(x);
+        int yCor = ran.nextInt(y);
         Window w = new Window(wX, wY, xCor, yCor, z);
         winds.add(z, w);
     }
@@ -46,7 +46,7 @@ public class WindowManager {
         }
     }
 
-    private void bringToFront(Window w){
+    public void bringToFront(Window w){
         for(int i = 0; i < winds.size(); i++){
             if(w.getzOrder() == winds.get(i).getzOrder()){
                 winds.remove(winds.get(i));
@@ -55,9 +55,9 @@ public class WindowManager {
             }
         }
     }
-    public void findWindowByPositon(int x, int y){
+    public Window findWindowByPositon(int x, int y){
         ArrayList<Window> windsAtPos = new ArrayList<Window>();
-
+        Window w = new Window (0, 0, 0,0,0);
         for (int i = 0; i < winds.size() ; i++){
             int xCor = winds.get(i).getxCor();
             int yCor = winds.get(i).getyCor();
@@ -70,16 +70,24 @@ public class WindowManager {
         if (windsAtPos.size() > 1){
             for(int i = 0; i < windsAtPos.size() - 1; i++){
                     if (windsAtPos.get(i).compareTo(windsAtPos.get(i+1)) == 1){
-                    bringToFront(windsAtPos.get(i));
+                     w = windsAtPos.get(i);
                     }else if (windsAtPos.get(i).compareTo(windsAtPos.get(i+1)) == 0){
-                        bringToFront(windsAtPos.get(0));
+                        w = windsAtPos.get(0);
                     }else {
-                        bringToFront(windsAtPos.get(windsAtPos.size()-1));
+                        w = windsAtPos.get(windsAtPos.size()-1);
                     }
             }
         }else if (windsAtPos.size() == 1){
-            bringToFront(windsAtPos.get(0));
+            w = windsAtPos.get(0);
         }
+        return w;
+    }
+
+    public void moveWindowPos(int x, int y, int xDis, int yDis){
+            int changeX = x - xDis;
+            int changeY = y - yDis;
+            winds.get(winds.size() - 1).setxCor(changeX);
+            winds.get(winds.size() - 1).setyCor(changeY);
     }
     private int findX (Window w){
         return w.getxCor() + w.getxWidth();
@@ -87,6 +95,4 @@ public class WindowManager {
     private int findY (Window w){
         return w.getyCor() + w.getyHeight();
     }
-
-
 }

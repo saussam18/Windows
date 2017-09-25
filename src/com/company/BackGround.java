@@ -1,12 +1,13 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
-public class BackGround extends JPanel implements MouseListener {
+
+public class BackGround extends JPanel implements MouseListener, MouseInputListener {
 
     //myJpanel extents jpanel
     //implements mouse interface
@@ -19,12 +20,12 @@ public class BackGround extends JPanel implements MouseListener {
 
     private JPanel panel1;
     private WindowManager w = new WindowManager();
-    private int xSize;
-    private int ySize;
+    private int xDis;
+    private int yDis;
 
     public BackGround(int x, int y){
-        panel1.addMouseListener(this);
         addMouseListener(this);
+        addMouseMotionListener(this);
         setPreferredSize(new Dimension(x, y));
         for (int i = 0; i < 10; i++){
             w.addWindow(x, y, i);
@@ -39,23 +40,40 @@ public class BackGround extends JPanel implements MouseListener {
         w.drawWindows(g);
     }
 
-
-    public void mouseClicked(MouseEvent e) {
+    @Override
+    public void mousePressed(MouseEvent e){
         int x = e.getX();
         int y = e.getY();
-        w.findWindowByPositon(x, y);
+        Window wind = w.findWindowByPositon(x, y);
         System.out.println(x+","+y);
+        xDis = x - wind.getxCor();
+        yDis = y - wind.getyCor();
+        w.bringToFront(wind);
         repaint();
     }
+
+    @Override
+    public void mouseDragged(MouseEvent e){
+        int x = e.getX();
+        int y = e.getY();
+        w.moveWindowPos(x, y, xDis, yDis);
+        repaint();
+    }
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
     public void mouseExited(MouseEvent e){
 
     }
     public void mouseReleased(MouseEvent e){
 
     }
-    public void mousePressed(MouseEvent e){
 
-    }
     public void mouseEntered(MouseEvent e){
 
     }

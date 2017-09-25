@@ -12,8 +12,8 @@ public class Window implements Comparable<Window> {
     //getters and setters
     private int xWidth;
     private int yHeight;
-    private int xCor;
-    private int yCor;
+    public int xCor;
+    public int yCor;
     private int zOrder;
     private int color1;
     private int color2;
